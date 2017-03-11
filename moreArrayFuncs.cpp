@@ -10,15 +10,16 @@
 
 int indexOfMax(int *a, int size) {
   assert(size >= 1);
-  int max = 0;
-  for (int i = 0; i < size; i++){
-    if (a[i] > max)
+  int max = a[0];
+  int maxIndex = 0;
+  for (int i = 1; i < size; i++){
+    if (a[i] > max){
       max = a[i];
+      maxIndex = i;
+    }
   }
-  for (int j=0; j<size; j++){
-    if (a[j] == max)
-      return j;
-  }
+
+  return maxIndex;
   
 }
 
@@ -30,16 +31,17 @@ int indexOfMax(int *a, int size) {
 // You may assume size >= 1
 int indexOfMin(int *a, int size) {
   assert(size >= 1);
-  int min = 0;
-  for (int i = 0; i < size; i++){
-    if (a[i] < min)
+  int min = a[0];
+  int minIndex = 0;
+  for (int i = 1; i < size; i++){
+    if (a[i] < min){
       min = a[i];
-  }
-  for (int j=0; j<size; j++){
-    if (a[j] == min)
-      return j;
+      minIndex = i;
+    }
   }
 
+  return minIndex;
+  
 }
 
 // a: an array of ints.  size is how many ints in array
