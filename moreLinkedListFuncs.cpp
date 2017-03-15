@@ -15,11 +15,26 @@ Node * pointerToMax(LinkedList *list) {
   //  so does not need to do error checking for these conditions.
   assert(list!=NULL);
   assert(list->head != NULL);
+  Node *p = list->head;
+  int max = list->head->data;
+  Node *maxPointer;
+  while (p != NULL){
+    if (p->data > max)
+      max = p->data;
+    p = p->next;
+  }
+  
+  p = list->head;
+  while (p != NULL){
+    if (p->data == max){
+      maxPointer = p;
+      break;
+    }
+    p = p->next;
+  }
 
-  // TODO: Insert code here to calculate and return
-  //   value of pointer to max element (first one if ties.)
-
-  return NULL; // STUB!  Replace this line with correct code
+  return maxPointer;
+   
 }
 
 // list: ptr to a linked list of Node (each with int data, and Node * next)
@@ -38,13 +53,27 @@ Node * pointerToMin(LinkedList *list) {
   assert(list!=NULL);
   assert(list->head != NULL);
 
-  // TODO: Insert code here to calculate and return
-  //   value of pointer to min element 
-  //   (first one such value that occurs if there are ties.)
+  Node *p = list->head;
+  int min = list->head->data;
+  Node *minPointer;
+  while (p != NULL){
+    if (p->data < min)
+      min = p->data;
+    p = p->next;
+  }
+  
+  p = list->head;
+  while (p != NULL){
+    if (p->data == min){
+      minPointer = p;
+      break;
+    }
+    p = p->next;
+  }
 
-  return NULL; // STUB!  Replace this line with correct code
-
+  return minPointer;
 }
+
 
 // list: ptr to a linked list of Node (each with int data, and Node * next)
 // Return the largest value in the list.
@@ -59,11 +88,15 @@ int largestValue(LinkedList *list) {
   assert(list!=NULL);
   assert(list->head != NULL);
 
-  // TODO: Insert code here to calculate and return
-  //   largest value in list (which may not be unique).
+  Node *p = list->head;
+  int max = list->head->data;
+  while (p != NULL){
+    if (p->data > max)
+      max = p->data;
+    p = p->next;
+  }
 
-  return -42; // STUB!  Replace this line with correct code
-
+  return max;
 }
 
 // list: ptr to a linked list of Node (each with int data, and Node * next)
@@ -78,11 +111,15 @@ int smallestValue(LinkedList *list) {
   assert(list!=NULL);
   assert(list->head != NULL);
 
-  // TODO: Insert code here to calculate and return
-  //   smallest value in list (which may not be unique).
+  Node *p = list->head;
+  int min = list->head->data;
+  while (p != NULL){
+    if (p->data < min)
+      min = p->data;
+    p = p->next;
+  }
 
-  return -42; // STUB!  Replace this line with correct code
-
+  return min;
 }
 
 // list: ptr to a linked list of Node (each with int data, and Node * next)
@@ -97,10 +134,49 @@ int sum(LinkedList * list) {
 
   assert(list!=NULL);
 
-  // TODO: Insert code here to calculate and return
-  //   sum of all values in list (0 if there are none).
+  if (list->head == NULL)
+    return 0;
 
-  return -42; // STUB!  Replace this line with correct code
-
+  Node *p = list->head;
+  int mySum;
+  while (p != NULL){
+    mySum += p->data;
+    p = p->next;
+  }
+  return mySum;
 }
 
+/* void deleteNodeIteratively (LinkedList *list, int value){ // deletes all nodes with data equal to value
+  /* Node *p = list->head;
+  Node *q;
+  while (p->data == value){
+    q = p;
+    delete q;
+    if (p->next == NULL) break;
+    list->head = list->head->next;
+    p = p->next;
+  }
+
+  p = list->head;
+  while (p != NULL){
+    if (p->data == value){
+      q = p;
+      delete q;
+    }
+    p = p->next;
+  }
+
+  list->tail = p; 
+  
+  Node* iter; Node* before; Node* discard;
+  for (iter=list->head; iter != NULL; iter = iter->next){
+    list->head = iter;
+    before = iter;
+    if (list->data == value){
+      discard = iter->next;
+      before->next = discard->next;
+      delete discard;
+    }
+    if (iter->next == NULL) list->tail = iter;
+  }
+  } */
